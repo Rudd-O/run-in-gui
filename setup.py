@@ -29,7 +29,7 @@ classifiers = [
 setup(
 	name = 'run-in-gui',
 	version=version,
-	description = 'A tool to execute graphical programs from cron and other background processes',
+	description = 'Tools to execute (possibly) graphical programs from cron and other background processes',
 	long_description = readme,
 	author='Manuel Amador (Rudd-O)',
 	author_email='rudd-o@rudd-o.com',
