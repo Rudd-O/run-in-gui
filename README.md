@@ -26,21 +26,21 @@ Tools included in this set
 
 This package contains several tools:
     
-1. run-in-env-of: a tool that runs the command of your choice in the
-       environment of the PID of your choice.  If run as root, it can
-       setuid() to the user and group of that PID.
-2. run-in-gui: a tool that sorts out a desktop session you're running
-       then uses run-in-env-of to execute the command on your choice under
-       that desktop session.  Prior to the execution of that program, it
-       switches to the selected desktop session, to enable hardware access
-       to devices that would otherwise be blocked (e.g. audio).
+1. `run-in-env-of`: a tool that runs the command of your choice in the
+    environment of the PID of your choice.  If run as root, it can
+   `setuid()` to the user and group of that PID.
+2. `run-in-gui`: a tool that sorts out a desktop session you're running
+   then uses run-in-env-of to execute the command on your choice under
+   that desktop session.  Prior to the execution of that program, it
+   switches to the selected desktop session, to enable hardware access
+   to devices that would otherwise be blocked (e.g. audio).
 
 What you need to have before using this package
 -----------------------------------------------
     
-    - Python 2.7 on your local machine
-    - `loginctl` fully operational
-    - `/proc` mounted
+* Python 2.7 on your local machine
+* `loginctl` fully operational
+* `/proc` mounted
 
 Installation
 ------------
