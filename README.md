@@ -8,8 +8,18 @@ Run in GUI (run-in-gui)
 
 This project contains two programs that assist you in executing programs
 in a separate desktop session (defined by the environment variables of any
-program executing in that session).  It's useful to start GUI programs from
-cron.
+program executing in that session), and then switching to the session in
+real-time as the program executes.  It's useful to start GUI programs from
+cron that need a graphical display and/or audio access.
+
+Why is this useful?  Because of the way that Linux has evolved, nowadays
+it's very hard to get certain computer programs to do things that were
+trivial in the past.  For example: getting your music player to play a list
+of songs to wake you up -- unless you're running the program straight from
+the GUI, it won't actually work; either the program just won't run, or the
+audio will be corked.
+
+Caveat: this program still requires you to be logged in.
 
 Tools included in this set
 --------------------------
@@ -21,7 +31,9 @@ This package contains several tools:
        setuid() to the user and group of that PID.
     2. run-in-gui: a tool that sorts out a desktop session you're running
        then uses run-in-env-of to execute the command on your choice under
-       that desktop session.
+       that desktop session.  Prior to the execution of that program, it
+       switches to the selected desktop session, to enable hardware access
+       to devices that would otherwise be blocked (e.g. audio).
 
 What you need to have before using this package
 -----------------------------------------------
@@ -52,3 +64,23 @@ You can also run it directly from the unpacked source directory::
     
     export PYTHONPATH="$PWD"/src
     ./<program> <parameters>
+
+Usage
+-----
+
+Say, for example, you want to run Amarok from a crontab, but you want Amarok
+to start on your logged-in desktop session.  No problem: you can stick this
+into your crontab:
+
+    20 4 * * * /usr/local/run-in-gui/bin/run-in-gui amarok -p Toke\ up.m3u
+
+As you can see, at exactly 4:20 AM, Amarok will be executed in your desktop
+session, and will start playing the playlist `Toke up.m3u` in your home
+directory.
+
+You can also do the exact same thing from an `at` job:
+
+    echo /path/to/run-in-gui amarok -p Matanga.m3u | at 5:45
+
+If, for some reason, the program won't start, check your mail folder in
+`/var/mail/$USERNAME`, where cron traditionally deposits crontab output.
