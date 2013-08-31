@@ -29,4 +29,4 @@ loginctl activate "$sessid"
 set -e
 unset CDPATH
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-./run-in-env-of "$childofsessleader" "$@"
+"$DIR"/run-in-env-of "$childofsessleader" "$@"
