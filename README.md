@@ -26,10 +26,10 @@ Tools included in this set
 
 This package contains several tools:
     
-    1. run-in-env-of: a tool that runs the command of your choice in the
+1. run-in-env-of: a tool that runs the command of your choice in the
        environment of the PID of your choice.  If run as root, it can
        setuid() to the user and group of that PID.
-    2. run-in-gui: a tool that sorts out a desktop session you're running
+2. run-in-gui: a tool that sorts out a desktop session you're running
        then uses run-in-env-of to execute the command on your choice under
        that desktop session.  Prior to the execution of that program, it
        switches to the selected desktop session, to enable hardware access
