@@ -4,7 +4,7 @@ Run in GUI (run-in-gui)
 | Donate to support this free software |
 |:------------------------------------:|
 | <img width="164" height="164" title="" alt="" src="doc/bitcoin.png" /> |
-| [12cXnYY3wabbPmLpS7ZgACh4mBawrXdndk](bitcoin:12cXnYY3wabbPmLpS7ZgACh4mBawrXdndk) |
+| [1DmVQkuY1zjP6ZiPi1QJgSowHtR8afBDMS](bitcoin:1DmVQkuY1zjP6ZiPi1QJgSowHtR8afBDMS) |
 
 This project contains two programs that assist you in executing programs
 in a separate desktop session (defined by the environment variables of any
