@@ -12,14 +12,46 @@ program executing in that session), and then switching to the session in
 real-time as the program executes.  It's useful to start GUI programs from
 cron that need a graphical display and/or audio access.
 
-Why is this useful?  Because of the way that Linux has evolved, nowadays
-it's very hard to get certain computer programs to do things that were
-trivial in the past.  For example: getting your music player to play a list
-of songs to wake you up -- unless you're running the program straight from
-the GUI, it won't actually work; either the program just won't run, or the
-audio will be corked.
+Why is this necessary?
+----------------------
 
-Caveat: this program still requires you to be logged in.
+Lots of people ask me why this is useful, or some other variant of the same
+question, such as "Can't I just `DISPLAY=:0` in my crontab?"
+
+Well, because of the way that Linux has evolved, nowadays it's very hard to
+get certain computer programs to do things that were trivial in the past.
+Lots of GUI programs now depend on a wide array of session daemons and
+other services, such as:
+
+* X11 authentication,
+* D-Bus,
+* KWallet,
+* GnuPG agents,
+* SSH agents,
+* KIO services,
+* PulseAudio.
+
+These services are normally set up properly at the start of (and solely
+in the context of) your GUI session, but entirely unavailable for use in
+crontabs and other non-GUI shells, nominally disassociated with your
+desktop session.
+
+For example: getting your music player to play a list of songs to wake you
+up -- unless you're running the program straight from a terminal in your
+desktop session's GUI, it won't actually work; either the program just
+won't run, or the audio will be corked.
+
+How this works
+--------------
+
+So what we do in `run-in-gui` is simple: ''we cheat'' by stealing the
+necessary information from other programs running in your desktop session,
+and using it to recreate an environment in which we run your program.
+
+Caveat: of course, this program ''still'' requires you to be logged in. If
+your session isn't active, `run-in-gui` will take the liberty to switch to
+your inactive session, activating -- but, if locked, not unlocking -- it,
+and then running your program.
 
 Tools included in this set
 --------------------------
