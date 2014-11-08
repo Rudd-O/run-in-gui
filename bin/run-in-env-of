@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import errno
 import sys
 import os
 import subprocess
@@ -12,7 +13,11 @@ environ = [ e.split("=",1) for e in environ if e.strip() ]
 userid = os.stat("/proc/%s/environ"%pid).st_uid
 groupid = os.stat("/proc/%s/environ"%pid).st_gid
 
-os.setsid()
+try:
+  os.setsid()
+except OSError, e:
+  if e.errno != errno.EPERM:
+    raise
 os.setgid(groupid)
 os.setuid(userid)
 for k in os.environ.keys():
