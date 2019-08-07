@@ -22,8 +22,8 @@ classifiers = [
 'Intended Audience :: System Administrators',
 'License :: OSI Approved :: GNU General Public License (GPL)',
 'Operating System :: POSIX :: Linux',
-'Programming Language :: Python :: 2 :: Only',
-'Programming Language :: Python :: 2.7',
+'Programming Language :: Python :: 3 :: Only',
+'Programming Language :: Python :: 3.6',
 ]
 
 setup(
