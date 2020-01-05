@@ -8,8 +8,9 @@ cmdline = list(sys.argv[1:])
 pid = cmdline.pop(0)
 program = cmdline[0]
 
-environ = open("/proc/%s/environ"%pid).read().split("\0")
-environ = [ e.split("=",1) for e in environ if e.strip() ]
+environ = open("/proc/%s/environ"%pid, "rb").read().split(b"\0")
+environ = [ e.split(b"=",1) for e in environ if e ]
+environ = [ e for e in environ if len(e) == 2 ]
 userid = os.stat("/proc/%s/environ"%pid).st_uid
 groupid = os.stat("/proc/%s/environ"%pid).st_gid
 
@@ -22,8 +23,8 @@ os.setgid(groupid)
 os.setuid(userid)
 for k in os.environ.keys():
     del os.environ[k]
-for k,v in environ.items():
-    os.environ[k] = v
+for k,v in environ:
+    os.environ[k.decode("utf-8", "ignore")] = v.decode("utf-8", "ignore")
 
 retval = os.fork()
 if retval == -1:
