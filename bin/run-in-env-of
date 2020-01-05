@@ -15,14 +15,14 @@ groupid = os.stat("/proc/%s/environ"%pid).st_gid
 
 try:
   os.setsid()
-except OSError, e:
+except OSError as e:
   if e.errno != errno.EPERM:
     raise
 os.setgid(groupid)
 os.setuid(userid)
 for k in os.environ.keys():
     del os.environ[k]
-for k,v in environ:
+for k,v in environ.items():
     os.environ[k] = v
 
 retval = os.fork()
